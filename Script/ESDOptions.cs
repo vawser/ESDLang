@@ -575,6 +575,6 @@ Recompile the given Python files into a subdirectory of the game, copying releva
         }
         public class Info : Option { }
 
-        public enum CmdType { Unknown, None, Talk, TalkER, Chr, Event, AI }
+        public enum CmdType { Unknown, None, Talk, TalkER, Chr, Event, AI, TalkAC6 }
     }
 }

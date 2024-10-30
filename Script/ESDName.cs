@@ -29,6 +29,7 @@ namespace ESDLang.Script
             [FromGame.DS2] = CmdType.Event,
             [FromGame.DS2S] = CmdType.Event,
             [FromGame.ER] = CmdType.TalkER,
+            [FromGame.AC6] = CmdType.TalkAC6,
         };
         public static CmdType GetCmdType(string esd, FromGame game = FromGame.UNKNOWN)
         {
@@ -37,7 +38,14 @@ namespace ESDLang.Script
             if (esd.StartsWith("dummy") || exactChr.Contains(esd)) return CmdType.Chr;
             if (esd.StartsWith("t"))
             {
-                return esd.Length == 10 ? CmdType.TalkER : CmdType.Talk;
+                if (game is FromGame.AC6)
+                {
+                    return CmdType.TalkAC6;
+                }
+                else
+                {
+                    return esd.Length == 10 ? CmdType.TalkER : CmdType.Talk;
+                }
             }
             if (defaultCmds.TryGetValue(game, out CmdType type)) return type;
             return CmdType.None;
